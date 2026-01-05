@@ -8,7 +8,9 @@ DEBUG_MSG_CODES = {
     "104": "Request Validation Failed",
     "105": "Empty Data Supplied",
     "106": "Resource Conflict",
-    "107": "Not Implemented"
+    "107": "Not Implemented",
+    "401": "Invalid authentication.",
+    "403": "You are not authorised to execute this."
 }
 
 

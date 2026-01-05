@@ -6,6 +6,7 @@ class Config:
     DEBUG = bool(int(environ.get("NEPTUNE_API_DEBUG", "0")))
     TESTING = bool(int(environ.get("NEPTUNE_API_TESTING", "0")))
     SECRET_KEY = environ.get("NEPTUNE_API_SECRET_KEY", "secret-key")
+    JWT_SECRET_KEY = '2cd74aa6-254b-496d-b628-77ef81a5a4cc'
     JSONIFY_PRETTYPRINT_REGULAR = True
     RESTFUL_JSON = {"indent": 2, "sort_keys": True}
     SQLALCHEMY_DATABASE_URI = environ.get("NEPTUNE_API_DATABASE_URI", "sqlite:///neptune.db")

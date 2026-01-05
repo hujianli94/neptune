@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-# limitations under the License.
 from api.api import ma
 from api.model import City
 

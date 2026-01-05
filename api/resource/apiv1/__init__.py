@@ -1,6 +1,8 @@
 from api.api import apiv1 as api
 from api.resource.apiv1.country import CountryResource
 from api.resource.apiv1.city import CityResource, CityIdResource
+from api.resource.apiv1.users import UsersResource
+from api.resource.apiv1.auth import AuthResource
 
 api.add_resource(
     CountryResource,
@@ -25,4 +27,18 @@ api.add_resource(
     "/cities/<city_id>",
     methods=["GET", "PUT", "DELETE"],
     endpoint="city"
+)
+
+api.add_resource(
+    UsersResource,
+    "/users",
+    methods=["POST"],
+    endpoint="users"
+)
+
+api.add_resource(
+    AuthResource,
+    "/login",
+    methods=["POST"],
+    endpoint="login"
 )

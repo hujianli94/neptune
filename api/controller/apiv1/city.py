@@ -6,11 +6,12 @@ from api.util import jsonify
 # from sqlalchemy import or_ as OR
 from api.api import db
 from api.util.pagination import paginate
+from flask_jwt_extended import jwt_required
 
 
 class CityController:
-    @staticmethod
-    def get_cities():
+    @classmethod
+    def get_cities(cls):
         city_schema = CitySchema(many=True)
         try:
             cities = City.query
@@ -18,8 +19,8 @@ class CityController:
         except:
             return jsonify(status=500, code=102)
 
-    @staticmethod
-    def get_city(city_id):
+    @classmethod
+    def get_city(cls, city_id):
         city_schema = CitySchema()
         try:
             city = City.query.get(city_id)
@@ -30,6 +31,7 @@ class CityController:
         return jsonify({"city": city_schema.dump(city)})
 
     @staticmethod
+    @jwt_required()
     def create_city():
         city_schema = CitySchema()
         data = request.get_json()
@@ -58,6 +60,7 @@ class CityController:
         )
 
     @staticmethod
+    @jwt_required()
     def update_city(city_id):
         city_schema = CitySchema()
         errors = city_schema.validate(request.json)
@@ -97,6 +100,7 @@ class CityController:
         )
 
     @staticmethod
+    @jwt_required()
     def delete_city(city_id):
         city = City.query.get(city_id)
         if city is None:

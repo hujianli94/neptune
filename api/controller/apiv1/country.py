@@ -4,6 +4,7 @@ from api.model import Country
 from api.schema.apiv1 import CountrySchema
 from api.util import jsonify
 from api.util.pagination import paginate
+from flask_jwt_extended import jwt_required
 
 
 class CountryController(object):
@@ -29,8 +30,9 @@ class CountryController(object):
             {"country": country_schema.dump(country)}
         )
 
-    @classmethod
-    def create_country(cls, country_data):
+    @staticmethod
+    @jwt_required()
+    def create_country(country_data):
         country_schema = CountrySchema()
         errors = country_schema.validate(country_data)
         if errors:
@@ -70,8 +72,9 @@ class CountryController(object):
             status=201
         )
 
-    @classmethod
-    def update_country(cls, country_id, data, partial=False):  # Add partial parameter
+    @staticmethod
+    @jwt_required()
+    def update_country(country_id, data, partial=False):  # Add partial parameter
         country_schema = CountrySchema()
         errors = country_schema.validate(data)
         if errors:
@@ -105,8 +108,9 @@ class CountryController(object):
             {"country": country_schema.dump(country)}
         )
 
-    @classmethod
-    def delete_country(cls, country_id):
+    @staticmethod
+    @jwt_required()
+    def delete_country(country_id):
         try:
             country = Country.query.get(country_id)
         except:

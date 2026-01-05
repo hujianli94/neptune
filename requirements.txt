@@ -38,3 +38,5 @@ toml==0.10.2
 watchdog==2.1.6
 Werkzeug==2.2.2
 zipp==3.6.0
+passlib
+flask-jwt-extended
